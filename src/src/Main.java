@@ -35,7 +35,10 @@
 */
 package src;
 
+import com.mysql.cj.protocol.Resultset;
+
 import javax.swing.*;
+import java.sql.*;
 
 
 public class Main
@@ -61,6 +64,9 @@ public class Main
 
     public static void main(String [] args)
 	{
+       SqlTest sqlTest = new SqlTest();
+       SqlTest.SQLChamada();
+
 
         String mensagem = Opcoes();
 
@@ -114,7 +120,12 @@ public class Main
                 case 0: //  0 - * Sair
                     break;
 
-                default://
+                default:       //Opção inválida
+
+                    JOptionPane.showMessageDialog(null,"Opção Inválida\n");
+                    mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
+                    opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+
                     break;
 
 		    }
