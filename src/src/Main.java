@@ -39,6 +39,8 @@ import com.mysql.cj.protocol.Resultset;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main
@@ -62,8 +64,7 @@ public class Main
             "\t\t\t\t 0 - * Sair\n";
     }
 
-    public static void main(String [] args)
-	{
+    public static void main(String [] args) throws Exception {
        SqlTest sqlTest = new SqlTest();
        SqlTest.SQLChamada();
 
@@ -79,6 +80,35 @@ public class Main
                     break;
 
                 case 2: //  2 - * Busca de Eventos de uma categoria
+
+                    System.out.println("Flag4 - Entrou em Listar Categorias");
+
+                    SqlTest sqltest = new SqlTest();
+                    Categoria testee = new Categoria();
+
+                    List<Categoria> testas = new ArrayList<Categoria>();
+
+                    testas = sqlTest.Buscar(testee);
+
+                    /*while(testas.iterator().hasNext())
+                    {
+                        System.out.println("Categorias: " + testas);
+                    }*/
+
+                    /*for(int io = 0; io < testas.toArray().length; io++)
+                    {
+                        System.out.println(testas[io].getNome());
+                    }*/
+
+
+                    System.out.println(testas.toArray().length);
+
+
+
+                    mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
+                    opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+
+
                     break;
 
                 case 3: //  3 - * Buscar usuários de um evento
