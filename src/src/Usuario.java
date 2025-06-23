@@ -1,6 +1,8 @@
+// 22/06/2025 Adicionado o cadastro de Usuario no SQL
 package src;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Usuario
 {
@@ -85,7 +87,7 @@ public class Usuario
 
    }
 
-   public void Registro()
+   public void Registro() throws Exception, SQLException
   {
     String nome = JOptionPane.showInputDialog("Digite o nome do usuário:\n");
     int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite a idade do usuário:\n"));
@@ -98,6 +100,8 @@ public class Usuario
     System.out.println("\n" + "Nome: " + nome);
     System.out.println("\n" + "Idade: " + idade);
     System.out.println("\n" + "Endereço: " + endereco);
+
+    SqlTest.CadastrarUsuario(usuario);
 
     System.out.println("\nCadastro Efetuado");
   }

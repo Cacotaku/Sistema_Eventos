@@ -1,6 +1,9 @@
+// 22/06/2025 Adicionado o cadastro de categoria no SQL
+
 package src;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Categoria
 {
@@ -66,7 +69,7 @@ public class Categoria
 
     }
 
-   public void Registro()
+   public void Registro() throws SQLException, Exception
    {
        String nome = JOptionPane.showInputDialog("Digite o nome da Categoria:\n");
        String descricao = JOptionPane.showInputDialog("Digite a descrição da categoria:\n");
@@ -74,7 +77,10 @@ public class Categoria
        categoria.setNome(nome);
        categoria.setDescricao(descricao);
 
+       SqlTest.CadastrarCategorias(categoria);
+
        System.out.println("\nCadastro Efetuado");
+
 
 
    }

@@ -1,6 +1,6 @@
 // 20/06/2025 Adicionar query para cada chamada na variável texto antes de ser executada
 // 21/06/2025 Método Busca está buscando campos da tabela Categoria. Replicar lógica para outras tabelas
-
+// 22/06/2025 Adicionado método de cadastro de categoria e usuario. Cadastro de evento implementado porém necessito trabalhar com tratamento de campo do tipo date.
 
 package src;
 
@@ -28,14 +28,15 @@ public class SqlTest
         return conn;
     }
 
+    // Chamada com todos os elementos de Categorias. Teste de busca no banco de dados
     public List<Categoria> Buscar(Categoria c) throws Exception
     {
 
         String sql = "Select * from Categorias";
+
         Connection conn = SqlTest.Abrir();
 
         Statement comando = conn.prepareStatement(sql);
-        //comando.setString();
 
         ResultSet resultado = comando.executeQuery(sql);
 
@@ -53,6 +54,115 @@ public class SqlTest
             System.out.println(linha.getDescricao());
 
             lista.add(linha);
+        }
+
+        resultado.close();
+        comando.close();
+        conn.close();
+
+        return lista;
+
+    }
+
+    // Cadastro de categoria
+    public static void Cadastrar(Categoria c) throws Exception
+    {
+
+        String sql = "Insert into Categorias ('nome', '" +
+                                             "'descricao') " +
+                                    "values (" +
+                                            c.getNome() + ", " +
+                                            c.getDescricao() + ")";
+
+        Connection conn = SqlTest.Abrir();
+
+        Statement comando = conn.prepareStatement(sql);
+
+        ResultSet resultado = comando.executeQuery(sql);
+
+
+        System.out.print(c.getNome());
+        System.out.println(c.getDescricao());
+
+
+        resultado.close();
+        comando.close();
+        conn.close();
+
+    }
+
+    //Chamada com todos os elementos de Eventos. Teste de busca no banco de dados
+    public List<Eventos> Buscar(Eventos c) throws Exception
+    {
+        String sql = "Select * from Eventos";
+
+        Connection conn = SqlTest.Abrir();
+
+        Statement comando = conn.prepareStatement(sql);
+        //comando.setString();
+
+        ResultSet resultado = comando.executeQuery(sql);
+
+        List<Eventos> lista = new ArrayList<Eventos>();
+
+        while(resultado.next()) // Preenchendo Lista
+        {
+            Eventos linha = new Eventos();
+
+            linha.setId_Evento(resultado.getInt("id_Eategoria"));
+            linha.setNome(resultado.getString("nome"));
+            linha.setEndereco(resultado.getString("endereco"));
+            linha.setId_Categorias(resultado.getInt("id_Categorias"));
+            linha.setDescricao(resultado.getString("descricao"));
+            linha.setHorario(resultado.getString("horario"));
+
+            System.out.println(linha.getId_Evento());
+            System.out.println(linha.getNome());
+            System.out.println(linha.getEndereco());
+            System.out.println(linha.getId_Categorias());
+            System.out.println(linha.getDescricao());
+            System.out.println(linha.getHorario());
+
+
+            lista.add(linha);
+        }
+
+        resultado.close();
+        comando.close();
+        conn.close();
+
+        return lista;
+
+    }
+
+    // Chamada com todos os elementos de Usuario. Teste de busca no banco de dados
+    public List<Usuario> Buscar(Usuario c) throws Exception
+    {
+        String sql = "Select * from Usuario";
+        Connection conn = SqlTest.Abrir();
+
+        Statement comando = conn.prepareStatement(sql);
+
+        ResultSet resultado = comando.executeQuery(sql);
+
+        List<Usuario> lista = new ArrayList<Usuario>();
+
+        while(resultado.next()) // Preenchendo Lista
+        {
+            Usuario linha = new Usuario();
+
+            linha.setId_Usuario(resultado.getInt("id_Usuario"));
+            linha.setNome(resultado.getString("Nome"));
+            linha.setIdade(resultado.getInt("Idade"));
+            linha.setEndereco(resultado.getString("Endereco"));
+
+            System.out.println(linha.getId_Usuario());
+            System.out.println(linha.getNome());
+            System.out.println(linha.getIdade());
+            System.out.println(linha.getEndereco());
+
+            lista.add(linha);
+
         }
 
         resultado.close();
@@ -137,53 +247,96 @@ public class SqlTest
 
     }
 
-    public static void CadastrarCategorias(String nome, String descricao) throws SQLException {
-        String texto =
-                "Insert into Categorias " +
-                        "('nome', " +
-                        "'descricao') " +
-                    "values (" +
-                        nome + "," +
-                        descricao + " );";
+    public static void CadastrarCategorias(Categoria categoria) throws SQLException, Exception
+    {
+        String sql = "Insert into Categorias (nome, " +
+                                             "descricao)" +
+                                    "values (?,?)";
+
+        Connection conn = SqlTest.Abrir();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+        preparedStatement.setString(1, categoria.getNome());
+        preparedStatement.setString(2,categoria.getDescricao());
+
+        preparedStatement.executeUpdate();
+
+        System.out.print(categoria.getNome());
+        System.out.println(categoria.getDescricao());
+
+        preparedStatement.close();
+        conn.close();
     }
 
-    public static void CadastrarEvento(String nome, String endereco, String data, String categoria, int id_CATEGORIA, String horario) throws SQLException
+    public static void CadastrarEvento(Eventos evento) throws Exception, SQLException
     {
-        String texto =
+        String sql =
                 "Insert into Evento " +
-                        "('nome', " +
-                        "'endereco', " +
-                        "'data', " +
-                        "'categoria' " +
-                        "'id_CATEGORIA', " +
-                        "'horario') " +
+                        "(nome, " +
+                        "endereco, " +
+                        "data, " +
+                        "categoria " +
+                        "id_CATEGORIA, " +
+                        "horario) " +
 
-                    "values (" +
+                    "values (?,?,?,?,?,?)";
 
-                        nome + "," +
-                        endereco + "," +
-                        data + "," +
-                        categoria + "," +
-                        id_CATEGORIA + "," +
-                        horario + " );";
+        Connection conn = SqlTest.Abrir();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+        preparedStatement.setString(1, evento.getNome());
+        preparedStatement.setString(2, evento.getEndereco());
+        //preparedStatement.setString(3, evento.getData());
+        preparedStatement.setString(4, evento.getDescricao());
+        preparedStatement.setInt(5, evento.getId_Categorias());
+        preparedStatement.setString(6, evento.getHorario());
+
+        preparedStatement.executeUpdate();
+
+
+
+        System.out.println(evento.getId_Evento());
+        System.out.println(evento.getNome());
+        System.out.println(evento.getEndereco());
+        System.out.println(evento.getId_Categorias());
+        System.out.println(evento.getDescricao());
+        System.out.println(evento.getHorario());
+
+        preparedStatement.close();
+        conn.close();
+
     }
 
-    public static void CadastrarUsuario(String nome, String endereco, int idade) throws SQLException
+    public static void CadastrarUsuario(Usuario usuario) throws SQLException, Exception
     {
-        String texto =
-                "Insert into Evento " +
-                        "('nome', " +
-                        "'endereco', " +
-                        "'idade', " +
-                        "'categoria' " +
-                        "'id_CATEGORIA', " +
-                        "'horario') " +
+        String sql =
+                "Insert into Usuario " +
+                        "(nome, " +
+                        "endereco, " +
+                        "idade) " +
 
-                    "values (" +
+                    "values (?,?,?);";
 
-                        nome + "," +
-                        endereco + "," +
-                        idade + " );";
+        Connection conn = SqlTest.Abrir();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+        preparedStatement.setString(1, usuario.getNome());
+        preparedStatement.setString(2, usuario.getEndereco());
+        preparedStatement.setInt(3, usuario.getIdade());
+
+        preparedStatement.executeUpdate();
+
+        System.out.print(usuario.getId_Usuario());
+        System.out.print(usuario.getNome());
+        System.out.println(usuario.getEndereco());
+        System.out.println(usuario.getIdade());
+
+        preparedStatement.close();
+        conn.close();
+
     }
 
 

@@ -64,7 +64,7 @@ public class Main
             "\t\t\t\t 0 - * Sair\n";
     }
 
-    public static void main(String [] args) throws Exception {
+    public static void main(String [] args) throws SQLException, Exception {
        SqlTest sqlTest = new SqlTest();
        SqlTest.SQLChamada();
 
@@ -103,8 +103,6 @@ public class Main
 
                     System.out.println(testas.toArray().length);
 
-
-
                     mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
                     opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
 
@@ -137,10 +135,15 @@ public class Main
                 case 6: //  6 - * Cadastrar Categorias
 
                     System.out.println("Flag3 - Entrou em cadastrar categoria");
+
                     Categoria categoria = new Categoria();
+
                     categoria.Registro();
+
                     mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
+
                     opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+
 
                     break;
 

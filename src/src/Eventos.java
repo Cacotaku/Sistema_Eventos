@@ -1,7 +1,9 @@
+// 22/06/2025 Adicionado o cadastro de Eventos no SQL, entretanto necessita do tratamento de valores data
 package src;
 
 //import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 public class Eventos
 {
@@ -21,7 +23,7 @@ public class Eventos
         this.id_Evento = id_Evento;
     }
 
-    private int getId_Evento()
+    public int getId_Evento()
     {
         return id_Evento;
     }
@@ -125,7 +127,7 @@ public class Eventos
 
    }
 
-   public void Registro()
+   public void Registro() throws Exception, SQLException
    {
 		//					Cadastro através do JOptionPane
 
@@ -173,6 +175,8 @@ public class Eventos
 		System.out.println("\n" + "Categoria: " + categoria);
 		System.out.println("\n" + "Descrição do Evento: " + descricao);
 		System.out.println("\n" + "Horario: " + horario);
+
+        SqlTest.CadastrarEvento(eventos);
 
 		System.out.println("\nCadastro Efetuado");
 
