@@ -35,7 +35,7 @@ public class Usuario
 
     public void setIdade(int idade)
     {
-        this.idade = this.idade;
+        this.idade = idade;
     }
 
     public int getIdade()
