@@ -1,7 +1,7 @@
 // 20/06/2025 Adicionar query para cada chamada na variável texto antes de ser executada
 // 21/06/2025 Método Busca está buscando campos da tabela Categoria. Replicar lógica para outras tabelas
 // 22/06/2025 Adicionado método de cadastro de categoria e usuario. Cadastro de evento implementado porém necessito trabalhar com tratamento de campo do tipo date.
-// Cadastro de evento concluído. Tratamento de variável date em progresso. Falta apenas converter retorno do bando de dados para o usuário (sql.Date para LocalTime para String)
+// 24/06/2025 Cadastro de evento concluído. Tratamento de variável date em progresso. Falta apenas converter retorno do bando de dados para o usuário (sql.Date para LocalTime para String)
 
 package src;
 

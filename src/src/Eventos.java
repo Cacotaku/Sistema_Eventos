@@ -1,6 +1,6 @@
 // 22/06/2025 Adicionado o cadastro de Eventos no SQL, entretanto necessita do tratamento de valores data
-//Cadastro de evento concluído
-//tratamento de campo do tipo date em progresso. Resta apenas retorno da informação do banco de dados. sql.Date para LocalDate para String
+// 24/06/2025 Cadastro de evento concluído
+// 24/06/2025 Tratamento de campo do tipo date em progresso. Resta apenas retorno da informação do banco de dados. sql.Date para LocalDate para String
 
 package src;
 
