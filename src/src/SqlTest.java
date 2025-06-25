@@ -1,11 +1,13 @@
 // 20/06/2025 Adicionar query para cada chamada na variável texto antes de ser executada
 // 21/06/2025 Método Busca está buscando campos da tabela Categoria. Replicar lógica para outras tabelas
 // 22/06/2025 Adicionado método de cadastro de categoria e usuario. Cadastro de evento implementado porém necessito trabalhar com tratamento de campo do tipo date.
+// Cadastro de evento concluído. Tratamento de variável date em progresso. Falta apenas converter retorno do bando de dados para o usuário (sql.Date para LocalTime para String)
 
 package src;
 
 import java.sql.*;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,18 +111,20 @@ public class SqlTest
         {
             Eventos linha = new Eventos();
 
-            linha.setId_Evento(resultado.getInt("id_Eategoria"));
+            linha.setId_Evento(resultado.getInt("id_Evento"));
             linha.setNome(resultado.getString("nome"));
+            linha.setLocalDate(resultado.getString("Data"));
             linha.setEndereco(resultado.getString("endereco"));
-            linha.setId_Categorias(resultado.getInt("id_Categorias"));
-            linha.setDescricao(resultado.getString("descricao"));
+            linha.setId_Categoria(resultado.getInt("id_Categorias"));
+            //linha.setDescricao(resultado.getString("descricao"));
             linha.setHorario(resultado.getString("horario"));
 
             System.out.println(linha.getId_Evento());
             System.out.println(linha.getNome());
+            System.out.println(linha.getLocalDate());
             System.out.println(linha.getEndereco());
-            System.out.println(linha.getId_Categorias());
-            System.out.println(linha.getDescricao());
+            System.out.println(linha.getId_Categoria());
+            //System.out.println(linha.getDescricao());
             System.out.println(linha.getHorario());
 
 
@@ -173,33 +177,6 @@ public class SqlTest
 
     }
 
-    //Statement statement;
-
-    public String setNome_Categorias(String nome)
-    {
-        String texto = "insert into categorias(nome) values (" + nome +" )";
-        return texto;
-    }
-
-    /*public String getNome_Categorias(ResultSet resultSet)
-    {
-        String texto = resultSet.getString("nome");
-        return texto;
-    }*/
-
-    public String setDescricao_Categorias(String nome)
-    {
-        String texto = "insert into categorias(nome) values (" + nome +" )";
-        return texto;
-    }
-
-
-
-    /*public String getDescricao_Categorias(ResultSet resultSet)
-    {
-        String texto = resultSet.getString("descricao");
-        return texto;
-    }*/
 
     public void SQLExecutar(String texto)
     {
@@ -276,7 +253,7 @@ public class SqlTest
                         "(nome, " +
                         "endereco, " +
                         "data, " +
-                        "categoria " +
+                        "categoria, " +
                         "id_CATEGORIA, " +
                         "horario) " +
 
@@ -284,24 +261,47 @@ public class SqlTest
 
         Connection conn = SqlTest.Abrir();
 
+        Date data = Date.valueOf(evento.getLocalDate());
+
+        System.out.println(evento.getId_Categoria());
+
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+
+        /*
+        preparedStatement.setString(1, "aa");
+        preparedStatement.setString(2, "bb");
+        preparedStatement.setDate(3, data);
+        preparedStatement.setString(4, "dd");
+        preparedStatement.setInt(5, 1);
+        preparedStatement.setString(6, "ff");
+
+        */
+
 
         preparedStatement.setString(1, evento.getNome());
         preparedStatement.setString(2, evento.getEndereco());
-        //preparedStatement.setString(3, evento.getData());
-        preparedStatement.setString(4, evento.getDescricao());
-        preparedStatement.setInt(5, evento.getId_Categorias());
+        preparedStatement.setDate(3, data);
+        preparedStatement.setString(4, evento.getCategoria());
+        preparedStatement.setInt(5, evento.getId_Categoria());
         preparedStatement.setString(6, evento.getHorario());
 
-        preparedStatement.executeUpdate();
+
+
+        try
+        {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
 
-        System.out.println(evento.getId_Evento());
         System.out.println(evento.getNome());
         System.out.println(evento.getEndereco());
-        System.out.println(evento.getId_Categorias());
-        System.out.println(evento.getDescricao());
+        System.out.println(evento.getLocalDate());
+        System.out.println(evento.getId_Categoria());
+        System.out.println(evento.getCategoria());
         System.out.println(evento.getHorario());
 
         preparedStatement.close();
@@ -339,25 +339,4 @@ public class SqlTest
 
     }
 
-
-
-
-
-
-
-    /*public static void CadCatDescricao(Connection connection, String descricao)                   // Cadastro da coluna Descricao na tabela Categorias
-    {
-
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("Select  from categorias");
-
-
-
-        while (resultSet.next())
-        {
-
-            System.out.println(resultSet.getString("nome"));
-            System.out.println(resultSet.getString("descricao"));
-        }
-    }*/
 }

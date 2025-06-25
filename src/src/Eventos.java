@@ -1,9 +1,14 @@
 // 22/06/2025 Adicionado o cadastro de Eventos no SQL, entretanto necessita do tratamento de valores data
+//Cadastro de evento concluído
+//tratamento de campo do tipo date em progresso. Resta apenas retorno da informação do banco de dados. sql.Date para LocalDate para String
+
 package src;
 
 //import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.*;
 
 public class Eventos
 {
@@ -12,9 +17,10 @@ public class Eventos
     private String nome;
     private String endereco;
     private String categoria;
-    private int id_Categorias;
-    private String descricao;
+    private int id_Categoria;
+    /*private String descricao;*/
     private String horario;
+    private String localDate;
 
     static Eventos eventos = new Eventos();
 
@@ -48,6 +54,16 @@ public class Eventos
         return endereco;
     }
 
+    public void setLocalDate(String localDate)
+    {
+        this.localDate = localDate;
+    }
+
+    public String getLocalDate()
+    {
+        return localDate;
+    }
+
     public void setCategoria(String categoria)
     {
         this.categoria = categoria;
@@ -58,16 +74,16 @@ public class Eventos
         return categoria;
     }
 
-    public void setId_Categorias(int id_Categorias)
+    public void setId_Categoria(int id_Categoria)
     {
-        this.id_Categorias = id_Categorias;
+        this.id_Categoria = id_Categoria;
     }
 
-    public int getId_Categorias()
+    public int getId_Categoria()
     {
-        return id_Categorias;
+        return id_Categoria;
     }
-
+/*
     public void setDescricao(String descricao )
     {
         this.descricao = descricao;
@@ -77,7 +93,7 @@ public class Eventos
     {
         return descricao;
     }
-
+*/
     public void setHorario(String horario)
     {
         this.horario = horario;
@@ -95,13 +111,13 @@ public class Eventos
        eventos.setNome(nome);
        eventos.setEndereco(endereco);
        eventos.setCategoria(categoria);
-       eventos.setDescricao(descricao);
+       //eventos.setDescricao(descricao);
        eventos.setHorario(horario);
 
        System.out.println("\n" + "Evento: " + nome);
        System.out.println("\n" + "Endereco: " + endereco);
        System.out.println("\n" + "Categoria: " + categoria);
-       System.out.println("\n" + "Descrição do Evento: " + descricao);
+       //System.out.println("\n" + "Descrição do Evento: " + descricao);
        System.out.println("\n" + "Horario: " + horario);
 
        System.out.println("\nAtualização Efetuada");
@@ -114,13 +130,13 @@ public class Eventos
        String nome = eventos.getNome();
        String endereco = eventos.getEndereco();
        String categoria = eventos.getCategoria();
-       String descricao = eventos.getDescricao();
+       //String descricao = eventos.getDescricao();
        String horario = eventos.getHorario();
 
        System.out.println("\n" + "Nome: " + nome);
        System.out.println("\n" + "Endereco: " + endereco);
        System.out.println("\n" + "Categoria: " + categoria);
-       System.out.println("\n" + "Descrição do Evento: " + descricao);
+      // System.out.println("\n" + "Descrição do Evento: " + descricao);
        System.out.println("\n" + "Horario: " + horario);
 
        System.out.println("\n'Verificação' Efetuada");
@@ -129,52 +145,41 @@ public class Eventos
 
    public void Registro() throws Exception, SQLException
    {
+
+       eventos = new Eventos();
+
 		//					Cadastro através do JOptionPane
 
        String nome = JOptionPane.showInputDialog("Digite o nome do Evento:\n");
        String endereco = JOptionPane.showInputDialog("Digite o endereco:\n");
-       String categoria = JOptionPane.showInputDialog("Digite a categoraia desejada:\n");
-       String descricao = JOptionPane.showInputDialog("Digite a descrição do evento:\n");
+       String auxLocalDate = JOptionPane.showInputDialog("Digite a data (YYYY-MM-DD):\n");
+       String categoria = JOptionPane.showInputDialog("Digite a categoria desejada:\n");
+       int id_Categoria = Integer.parseInt(JOptionPane.showInputDialog("Digite o id da categoria desejada:\n"));
+       //String descricao = JOptionPane.showInputDialog("Digite a descrição do evento:\n");
        String horario = JOptionPane.showInputDialog("Digite o horário:\n");
 
+       //LocalDate localDate = LocalDate.parse(auxLocalDate); // Converter String para LocalDate para sql.Date
 
 
-		/*
 
-		//			Cadastro através do método Scanner
-
-		Scanner ler = new Scanner (System.in);  // Variável Ler com o método Scanner
-
-		System.out.println("Digite o nome do usuário:\n");
-		nome = ler.nextLine();
-
-		System.out.println("Digite o endereco:\n");
-		endereco = ler.nextLine();
-
-		System.out.println("Digite a categoria desejada:\n");
-		categoria = ler.nextLine();
-
-		System.out.println("Acrescente uma descrição para o evento:\n");
-		descricao = ler.nextLine();
-
-		System.out.println("Digite o horário:\n");
-		horario = ler.nextLine();
-
-        */
 
 		//               Preenchendo o objeto
 
        eventos.setNome(nome);
        eventos.setEndereco(endereco);
+       eventos.setLocalDate(auxLocalDate);
        eventos.setCategoria(categoria);
-       eventos.setDescricao(descricao);
+       eventos.setId_Categoria(id_Categoria);
+       //eventos.setDescricao(descricao);
        eventos.setHorario(horario);
 
-		System.out.println("\n" + "Nome: " + nome);
-		System.out.println("\n" + "Endereco: " + endereco);
-		System.out.println("\n" + "Categoria: " + categoria);
-		System.out.println("\n" + "Descrição do Evento: " + descricao);
-		System.out.println("\n" + "Horario: " + horario);
+		System.out.println("\n" + "Nome: " + eventos.getNome());
+		System.out.println("\n" + "Endereco: " + eventos.getEndereco());
+		System.out.println("\n" + "Data: " + eventos.getLocalDate());
+        System.out.println("\n" + "Categoria: " + eventos.getCategoria());
+        System.out.println("\n" + "ID da Categoria: " + eventos.getId_Categoria());
+		//System.out.println("\n" + "Descrição do Evento: " + descricao);
+		System.out.println("\n" + "Horario: " + eventos.getHorario());
 
         SqlTest.CadastrarEvento(eventos);
 
