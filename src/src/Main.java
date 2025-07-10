@@ -33,6 +33,12 @@
 				 *
 				 0 - * Sair
 */
+
+
+// 25/06/2025 ~ 09/07/2025 Projeto parado devido a problemas na estação de trabalho.
+//09/07/2025 Busca de usuários de um evento
+// (necessita de limpeza no código geral - tarefa para melhorar o código)
+
 package src;
 
 import com.mysql.cj.protocol.Resultset;
@@ -83,25 +89,17 @@ public class Main
 
                     System.out.println("Flag4 - Entrou em Listar Categorias");
 
-                    SqlTest sqltest = new SqlTest();
+                    int id_Categoria = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o id da categoria: "));
+
                     Categoria testee = new Categoria();
 
-                    List<Categoria> testas = new ArrayList<Categoria>();
+                    testee.setId_Categoria(id_Categoria);
 
-                    testas = sqlTest.Buscar(testee);
+                    List<Categoria> listaEventos = new ArrayList<Categoria>();
 
-                    /*while(testas.iterator().hasNext())
-                    {
-                        System.out.println("Categorias: " + testas);
-                    }*/
+                    listaEventos = sqlTest.Buscar(testee);
 
-                    /*for(int io = 0; io < testas.toArray().length; io++)
-                    {
-                        System.out.println(testas[io].getNome());
-                    }*/
-
-
-                    System.out.println(testas.toArray().length);
+                    System.out.println(listaEventos.toArray().length);
 
                     mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
                     opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
@@ -110,6 +108,24 @@ public class Main
                     break;
 
                 case 3: //  3 - * Buscar usuários de um evento
+
+                    System.out.println("Flag5 - Entrou em Listar usuários de um evento");
+
+                    int id_Evento = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o id do evento: "));
+
+                    Evento_Usuario evento_usuario = new Evento_Usuario();
+                    evento_usuario.setId_EveUsu(id_Evento);
+
+                    List<Evento_Usuario> listaEvento_Usuario = new ArrayList<Evento_Usuario>();
+
+                    listaEvento_Usuario = sqlTest.Buscar(evento_usuario);
+
+                    System.out.println(listaEvento_Usuario.toArray().length);
+
+                    mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
+                    opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+
+
                     break;
 
                 case 4: //  4 - * Cadastrar um evento
