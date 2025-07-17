@@ -44,6 +44,8 @@ public class Categoria
         return descricao;
     }
 
+    //Preenche o objeto categoria atualizando com os campos preenchidos
+
     public static void Atualizar(String nome, String descricao)
     {
         categoria = new Categoria();
@@ -57,6 +59,8 @@ public class Categoria
         System.out.println("\nAtualização Efetuada");
     }
 
+    //Retorna os dados da categoria
+
     public static void Verificar()
     {
         String nome = categoria.getNome();
@@ -69,6 +73,8 @@ public class Categoria
 
     }
 
+    //Cadastro de categoria
+
    public void Registro() throws SQLException, Exception
    {
        String nome = JOptionPane.showInputDialog("Digite o nome da Categoria:\n");
@@ -80,8 +86,5 @@ public class Categoria
        SqlTest.CadastrarCategorias(categoria);
 
        System.out.println("\nCadastro Efetuado");
-
-
-
    }
 }

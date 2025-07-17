@@ -32,6 +32,8 @@ public class Evento_Usuario
         return id_UsuEve;
     }
 
+    //Preenche o objeto de tabela relacional atualizando com os campos preenchidos (apenas para testes)
+
     public static void Atualizar(int id_EveUsu, int id_UsuEve)
     {
         Evento_Usuario e = new Evento_Usuario();
@@ -44,6 +46,8 @@ public class Evento_Usuario
 
         System.out.println("\nAtualização Efetuada");
     }
+
+    //Retorna os dados da tabela relacional
 
     public static void Verificar()
     {
@@ -59,10 +63,11 @@ public class Evento_Usuario
     }
 
     //Cadastrar uma pessoa em um evento
-   public void Registro() throws SQLException, Exception
+
+   public static void Registro() throws SQLException, Exception
    {
        int id_EveUsu = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do evento:\n"));
-       int id_UsuEve = Integer.parseInt(JOptionPane.showInputDialog("Digite id do usuário:\n"));
+       int id_UsuEve = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do usuário:\n"));
 
        evento_usuario.setId_EveUsu(id_EveUsu);
        evento_usuario.setId_UsuEve(id_UsuEve);

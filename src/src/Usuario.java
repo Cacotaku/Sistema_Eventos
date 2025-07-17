@@ -53,6 +53,8 @@ public class Usuario
         return endereco;
     }
 
+    //Preenche o objeto usuário atualizando com os campos preenchidos
+
     public static void Atualizar(int id_Usuario, String nome, int idade, String endereco )
     {
         usuario = new Usuario();
@@ -71,6 +73,8 @@ public class Usuario
 
     }
 
+    //Retorna os dados do usuário
+
     public static void Verificar()
    {
        int id_Usuario = usuario.getId_Usuario();
@@ -86,6 +90,8 @@ public class Usuario
        System.out.println("\n'Verificação' Efetuada");
 
    }
+
+   //Cadastro de usuário
 
    public void Registro() throws Exception, SQLException
   {

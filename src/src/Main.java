@@ -38,6 +38,7 @@
 // 25/06/2025 ~ 09/07/2025 Projeto parado devido a problemas na estação de trabalho.
 //09/07/2025 Busca de usuários de um evento
 // (necessita de limpeza no código geral - tarefa para melhorar o código)
+// 16/07/2025 - Adicionado inscrição em um evento
 
 package src;
 
@@ -164,6 +165,17 @@ public class Main
                     break;
 
                 case 7: //  7 - * Cadastrar inscrição num evento
+
+                    System.out.println("Flag6 - Entrou em cadastrar usuario em um evento");
+
+                    Evento_Usuario e_u = new Evento_Usuario();
+
+                    Evento_Usuario.Registro();
+
+                    mensagem = "Deseja realizar mais alguma operação?\n" + Opcoes();
+
+                    opt = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+
                     break;
 
                 case 0: //  0 - * Sair

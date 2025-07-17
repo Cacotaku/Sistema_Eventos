@@ -5,6 +5,8 @@
 // 25/06/2025 ~ 09/07/2025 Projeto parado devido a problemas na estação de trabalho.
 // 09/07/2025 Busca de categoria por ID acrescentada.
 
+
+//Essa classe trata sobre a conexão do sistema com o banco de dados.
 package src;
 
 import java.sql.*;
@@ -16,8 +18,8 @@ import java.util.List;
 
 public class SqlTest
 {
-    private static final String USUARIO = "teta";
-    private static final String SENHA = "1234";
+    private static final String USUARIO = "test1";
+    private static final String SENHA = "b123";
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/homework01";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -78,6 +80,7 @@ public class SqlTest
     }
 
     // Cadastro de categoria
+
     public static void Cadastrar(Categoria c) throws Exception
     {
 
@@ -105,6 +108,7 @@ public class SqlTest
     }
 
     //Chamada com todos os elementos de Eventos. Teste de busca no banco de dados
+
     public List<Eventos> Buscar(Eventos c) throws Exception
     {
         String sql = "Select * from Eventos";
@@ -151,6 +155,7 @@ public class SqlTest
     }
 
     // Chamada com todos os elementos de Usuario. Teste de busca no banco de dados
+
     public List<Usuario> Buscar(Usuario c) throws Exception
     {
         String sql = "Select * from Usuario";
@@ -189,6 +194,7 @@ public class SqlTest
     }
 
     // Chamada para buscar todos os usuários de um evento
+
     public List<Evento_Usuario> Buscar(Evento_Usuario eu) throws Exception
     {
 
@@ -238,8 +244,8 @@ public class SqlTest
         {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://127.0.0.1:3306/homework01",
-                    "teta",
-                    "1234"
+                    "test1",
+                    "b123"
 
             );
 
@@ -259,8 +265,8 @@ public class SqlTest
         {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://127.0.0.1:3306/homework01",
-                    "teta",
-                    "1234"
+                    "test1",
+                    "b123"
 
             );
 

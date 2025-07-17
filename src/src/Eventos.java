@@ -124,6 +124,8 @@ public class Eventos
 
    }
 
+   //Retorna os dados do evento
+
    public static void Verificar()
    {
 
@@ -142,6 +144,8 @@ public class Eventos
        System.out.println("\n'Verificação' Efetuada");
 
    }
+
+   //Cadastro de Evento
 
    public void Registro() throws Exception, SQLException
    {
