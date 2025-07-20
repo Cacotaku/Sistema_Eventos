@@ -13,7 +13,7 @@ Opcionalmente, o sistema pode estar conectado com o banco de dados (mysql)
 O sistema deve possuir interface gráfica.
 
 
-## ------------------------------------------   Status ------------------------------------------
+### ------------------------------------------   Status ------------------------------------------
 
 ### Tecnologias utilizadas: 
 <img loading="lazy" src="https://cdn.iconscout.com/icon/free/png-512/free-java-logo-icon-download-in-svg-png-gif-file-formats--wordmark-programming-language-pack-logos-icons-1174953.png?f=webp&w=256" width="40" height="40"/> <img loading="lazy" src="https://images.icon-icons.com/2699/PNG/512/mysql_logo_icon_169941.png" width="40" height="40"/> <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/9/9c/IntelliJ_IDEA_Icon.svg" width="40" height="40"/>
@@ -26,7 +26,7 @@ Atualmente o sistema realiza a conexão com o banco de dados para cadastro de us
 
 
 
-## ------------------------------------------ Desafios ------------------------------------------
+### ------------------------------------------ Desafios ------------------------------------------
 
 - Retirar linhas de código não utilizadas.
 - Documentar melhor as funções do código.
