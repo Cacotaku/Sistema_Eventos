@@ -30,7 +30,6 @@ Atualmente o sistema realiza a conexão com o banco de dados para cadastro de us
 
 - Retirar linhas de código não utilizadas.
 - Documentar melhor as funções do código.
-- Estou enfrentando problemas com minha estação de trabalho (fonte queimou e não pude programar durante duas semanas).
 - Conexão entre Java, MySql e Linux Mint (Procurar treinar conexão Maven (atualmente o sistema conecta com o connector J (JDBC) e Windows).
 
 
