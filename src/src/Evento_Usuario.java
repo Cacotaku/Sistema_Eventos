@@ -1,5 +1,3 @@
-//09/07/2025 Cadastro de
-
 package src;
 
 import javax.swing.*;
@@ -33,7 +31,6 @@ public class Evento_Usuario
     }
 
     //Preenche o objeto de tabela relacional atualizando com os campos preenchidos (apenas para testes)
-
     public static void Atualizar(int id_EveUsu, int id_UsuEve)
     {
         Evento_Usuario e = new Evento_Usuario();
@@ -48,22 +45,18 @@ public class Evento_Usuario
     }
 
     //Retorna os dados da tabela relacional
-
     public static void Verificar()
     {
         int id_EveUsu = evento_usuario.getId_EveUsu();
         int descricao = evento_usuario.getId_UsuEve();
 
-
         System.out.println("\n" + "Id do Evento: " + id_EveUsu);
         System.out.println("\n" + "Id do Usuario: " + id_EveUsu);
 
         System.out.println("\n'Verificação' Efetuada");
-
     }
 
     //Cadastrar uma pessoa em um evento
-
    public static void Registro() throws SQLException, Exception
    {
        int id_EveUsu = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do evento:\n"));
@@ -75,8 +68,5 @@ public class Evento_Usuario
        SqlTest.CadastrarEvento_Usuario(evento_usuario);
 
        System.out.println("\nCadastro Efetuado");
-
-
-
    }
 }
