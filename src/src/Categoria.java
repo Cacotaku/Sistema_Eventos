@@ -1,5 +1,3 @@
-// 22/06/2025 Adicionado o cadastro de categoria no SQL
-
 package src;
 
 import javax.swing.*;
@@ -70,11 +68,9 @@ public class Categoria
         System.out.println("\n" + "Descrição: " + descricao);
 
         System.out.println("\n'Verificação' Efetuada");
-
     }
 
     //Cadastro de categoria
-
    public void Registro() throws SQLException, Exception
    {
        String nome = JOptionPane.showInputDialog("Digite o nome da Categoria:\n");
