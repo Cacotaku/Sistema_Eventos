@@ -1,4 +1,3 @@
-// 22/06/2025 Adicionado o cadastro de Usuario no SQL
 package src;
 
 import javax.swing.*;
@@ -54,7 +53,6 @@ public class Usuario
     }
 
     //Preenche o objeto usuário atualizando com os campos preenchidos
-
     public static void Atualizar(int id_Usuario, String nome, int idade, String endereco )
     {
         usuario = new Usuario();
@@ -70,13 +68,11 @@ public class Usuario
         System.out.println("\n" + "Endereço: " + endereco);
 
         System.out.println("\nAtualização Efetuada");
-
     }
 
     //Retorna os dados do usuário
-
     public static void Verificar()
-   {
+    {
        int id_Usuario = usuario.getId_Usuario();
        String nome = usuario.getNome();
        int idade = usuario.getIdade();
@@ -88,28 +84,25 @@ public class Usuario
        System.out.println("\n" + "Endereço: " + endereco);
 
        System.out.println("\n'Verificação' Efetuada");
-
    }
 
    //Cadastro de usuário
-
    public void Registro() throws Exception, SQLException
-  {
-    String nome = JOptionPane.showInputDialog("Digite o nome do usuário:\n");
-    int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite a idade do usuário:\n"));
-    String endereco = JOptionPane.showInputDialog("Digite o endereco:\n");
+   {
+	   String nome = JOptionPane.showInputDialog("Digite o nome do usuário:\n");
+	   int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite a idade do usuário:\n"));
+	   String endereco = JOptionPane.showInputDialog("Digite o endereco:\n");
 
-    usuario.setNome(nome);
-    usuario.setIdade(idade);
-    usuario.setEndereco(endereco);
-
-    System.out.println("\n" + "Nome: " + nome);
-    System.out.println("\n" + "Idade: " + idade);
-    System.out.println("\n" + "Endereço: " + endereco);
-
-    SqlTest.CadastrarUsuario(usuario);
-
-    System.out.println("\nCadastro Efetuado");
+	   usuario.setNome(nome);
+	   usuario.setIdade(idade);
+	   usuario.setEndereco(endereco);
+	
+	   System.out.println("\n" + "Nome: " + nome);
+	   System.out.println("\n" + "Idade: " + idade);
+	   System.out.println("\n" + "Endereço: " + endereco);
+	
+	   SqlTest.CadastrarUsuario(usuario);
+	
+	   System.out.println("\nCadastro Efetuado");
   }
-
 }
